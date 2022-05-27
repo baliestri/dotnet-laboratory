@@ -1,5 +1,7 @@
 using AuthenticationWithJWT.Models;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace AuthenticationWithJWT.EndPoints;
 
 public static class WeatherForecastsEndPoints {
@@ -13,6 +15,7 @@ public static class WeatherForecastsEndPoints {
     return app;
   }
 
+  [Authorize(Roles = "Manager")]
   private static WeatherForecast[] GetWeatherForecast() {
     var forecast = Enumerable.Range(1, 5).Select(index =>
       new WeatherForecast
